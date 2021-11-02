@@ -29,6 +29,7 @@ final class UpdateCommand
      * @var int
      * @Assert\NotBlank()
      * @Assert\Regex(pattern="^[0-9]+$^", message="Номер телефона должен содержать только цифры.")
+     * @Assert\Length(min=6, max=15, minMessage="Номер телефона должен быть не менее {{ limit }} знаков.", maxMessage="Номер телефона должен быть не более {{ limit }} знаков.")
      */
     public $phone;
     

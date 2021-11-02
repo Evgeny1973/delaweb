@@ -13,7 +13,7 @@ final class Name
     
     public function __construct(string $value)
     {
-        $this->value = preg_replace('/[^a-zA-Zа-яА-Я0-9 ]/ui', '', $value);
+        $this->value = preg_replace('/[^a-zA-Zа-яА-Я0-9]/ui', '', $value);
     }
     
     public function getValue(): string
