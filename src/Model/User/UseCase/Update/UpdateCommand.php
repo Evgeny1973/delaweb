@@ -10,6 +10,7 @@ final class UpdateCommand
 {
     /**
      * @var int
+     * @Assert\NotBlank()
      */
     public $id;
     

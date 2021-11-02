@@ -8,7 +8,6 @@ use App\Model\Organization\Entity\OrganizationRepository;
 use App\Model\User\Entity\Name;
 use App\Model\User\Entity\User;
 use App\Model\User\Entity\UserRepository;
-use Doctrine\ORM\EntityNotFoundException;
 
 final class SignUpHandler
 {
