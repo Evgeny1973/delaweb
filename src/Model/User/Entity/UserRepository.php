@@ -31,6 +31,16 @@ final class UserRepository
 
 		return $user;
 	}
+    
+    /**
+     * @param int $phone
+     *
+     * @return User|null
+     */
+    public function findByPhone(int $phone): ?User
+    {
+        return $this->repo->findOneBy(['phone' => $phone]);
+    }
 
 	/**
 	 * @param User $user

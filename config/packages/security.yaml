@@ -10,7 +10,7 @@ security:
     providers:
         users:
             entity:
-                class: App\Model\Entity\User
+                class: App\Model\User\Entity\User
                 property: phone
 
     firewalls:
@@ -18,21 +18,18 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            form_login:
-                login_path: login
-                check_path: login
+
             lazy: true
             provider: users
+            custom_authenticator: App\Security\SecurityAuthenticator
             remember_me:
                 secret: '%kernel.secret%'
                 lifetime: 31536000
                 path: ~
                 domain: ~
-                always_remember_me: true
 
             logout:
                 path: logout
-                csrf_token_generator: security.csrf.token_manager
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -44,4 +41,4 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
          - { path: ^/auth, roles: PUBLIC_ACCESS }
-        # - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/profile, roles: IS_AUTHENTICATED_FULLY }

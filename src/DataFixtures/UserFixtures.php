@@ -2,7 +2,6 @@
 
 namespace App\DataFixtures;
 
-use App\Model\Organization\Entity\Organization;
 use App\Model\User\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -20,7 +19,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
                 $faker->firstName,
                 $faker->lastName,
                 $faker->numberBetween(1234567, 7654321),
-                $faker->password,
+                password_hash('12345', PASSWORD_DEFAULT),
                 $faker->numberBetween(1, 10),
                 $faker->numberBetween(1, 10),
             );
@@ -34,7 +33,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies(): array
     {
         return [
-            Organization::class,
+            OrganizationFixtures::class,
         ];
     }
 }

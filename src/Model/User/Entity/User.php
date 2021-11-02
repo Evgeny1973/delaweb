@@ -86,6 +86,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->createdAt = new \DateTimeImmutable('now');
     }
     
+    public function edit(
+        string $firstName,
+        string $lastName,
+        int $phone,
+        int $host,
+        int $organization
+    ): void {
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
+        $this->phone = $phone;
+        $this->host = $host;
+        $this->organization = $organization;
+    }
+    
     /**
      * @return int
      */

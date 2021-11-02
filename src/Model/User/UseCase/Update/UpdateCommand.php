@@ -1,11 +1,18 @@
 <?php
 
-namespace App\Model\User\UseCase\SignUp;
+declare(strict_types=1);
+
+namespace App\Model\User\UseCase\Update;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-final class SignUpCommand
+final class UpdateCommand
 {
+    /**
+     * @var int
+     */
+    public $id;
+    
     /**
      * @var string
      * @Assert\NotBlank(message="Поле {{ label }} не может быть пустым")
@@ -26,20 +33,35 @@ final class SignUpCommand
     public $phone;
     
     /**
-     * @var int
+     * @var int|string
      * @Assert\NotBlank(message="Поле {{ label }} не может быть пустым")
      */
     public $host;
     
     /**
-     * @var string
+     * @var int|string
      * @Assert\NotBlank(message="Поле {{ label }} не может быть пустым")
      */
     public $organization;
     
+    public function __construct(int $id)
+    {
+        $this->id = $id;
+    }
+    
     /**
-     * @var string
-     * @Assert\NotBlank()
+     * @param array $user
+     * @return static
      */
-    public $password;
+    public static function fromRequest(array $user): self
+    {
+        $command = new self((int)$user['id']);
+        $command->firstName = $user['firstName'];
+        $command->lastName = $user['lastName'];
+        $command->phone = $user['phone'];
+        $command->host = $user['host'];
+        $command->organization = $user['organization'];
+        
+        return $command;
+    }
 }

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mx-4">
+                    <div class="card-body p-4">
+                        {% include 'flash.html.twig' %}
+
+                        <h3>Регистрация</h3>
+
+                        {{ form_start(form) }}
+
+                        <div class="input-group mb-3">
+                            {{ form_widget(form.firstName, {'attr': {'placeholder': 'First Name'}}) }}
+                            {{ form_errors(form.firstName) }}
+                        </div>
+                        <div class="input-group mb-3">
+                            {{ form_widget(form.lastName, {'attr': {'placeholder': 'Last Name'}}) }}
+                            {{ form_errors(form.lastName) }}
+                        </div>
+                        <div class="input-group mb-3">
+                            {{ form_widget(form.phone, {'attr': {'placeholder': 'Phone'}}) }}
+                            {{ form_errors(form.phone) }}
+                        </div>
+                        <div class="input-group mb-4">
+                            {{ form_widget(form.host) }}
+                            {{ form_errors(form.host) }}
+                        </div>
+                        <div class="input-group mb-4">
+                            {{ form_widget(form.organization, {'attr': {'placeholder': 'Organization'}}) }}
+                            {{ form_errors(form.organization) }}
+                        </div>
+                        <div class="input-group mb-4">
+                            {{ form_widget(form.password, {'attr': {'placeholder': 'Password'}}) }}
+                            {{ form_errors(form.password) }}
+                        </div>
+
+                        <button type="submit" class="btn btn-block btn-success">Зарегистрироваться</button>
+
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

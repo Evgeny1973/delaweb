@@ -11,9 +11,11 @@ use Doctrine\ORM\EntityRepository;
 final class OrganizationRepository
 {
     private EntityRepository $repo;
+    private EntityManagerInterface $em;
     
     public function __construct(EntityManagerInterface $em)
     {
+        $this->em = $em;
         $this->repo = $em->getRepository(Organization::class);
     }
     
@@ -24,5 +26,20 @@ final class OrganizationRepository
         }
         
         return $organization;
+    }
+    
+    public function add(Organization $organization): void
+    {
+        $this->em->persist($organization);
+    }
+    
+    /**
+     * @param string $name
+     *
+     * @return Organization|null
+     */
+    public function findByName(string $name): ?Organization
+    {
+        return $this->repo->findOneBy(['name' => $name]);
     }
 }
